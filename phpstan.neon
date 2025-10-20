@@ -1,4 +1,4 @@
 parameters:
     level: 7
     ignoreErrors:
-        - { message: '#Negated boolean expression is always false.#', path: '%rootDir%/../../../vendor/spryker/spryker/Bundles/CustomerGroupDiscountConnector/src/Spryker/Zed/CustomerGroupDiscountConnector/Business/DecisionRule/CustomerGroupDecisionRule.php' }
+        - { message: '#Negated boolean expression is always false.#', path: '%rootDir%/../../../src/Spryker/CustomerGroupDiscountConnector/src/Spryker/Zed/CustomerGroupDiscountConnector/Business/DecisionRule/CustomerGroupDecisionRule.php' }
