@@ -41,9 +41,6 @@ class CustomerGroupDecisionRuleTest extends Unit
      */
     protected const CUSTOMER_GROUP_NAMES_TEST_GROUP_2 = 'customer_group_names_test_group_2';
 
-    /**
-     * @return void
-     */
     public function testIsSatisfiedWhenCustomerIsNotSetShouldReturnFalse(): void
     {
         $customerGroupDecisionRule = $this->createCustomerGroupDecisionRule();
@@ -53,9 +50,6 @@ class CustomerGroupDecisionRuleTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testIsSatisfiedWhenCustomerGroupIsNotSetShouldReturnFalse(): void
     {
         $customerGroupDecisionRule = $this->createCustomerGroupDecisionRule();
@@ -71,9 +65,6 @@ class CustomerGroupDecisionRuleTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testIsSatisfiedWhenAllDataIsPresentShouldExecuteDiscountQueryString(): void
     {
         $discountFacadeMock = $this->createDiscountFacadeMock();
@@ -113,9 +104,6 @@ class CustomerGroupDecisionRuleTest extends Unit
         );
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerGroupCollectionTransfer
-     */
     protected function createCustomerGroupCollectionTransfer(): CustomerGroupCollectionTransfer
     {
         return (new CustomerGroupCollectionTransfer())
@@ -123,22 +111,11 @@ class CustomerGroupDecisionRuleTest extends Unit
             ->addGroup($this->addCustomerGroup(static::CUSTOMER_GROUP_NAMES_TEST_GROUP_2));
     }
 
-    /**
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\CustomerGroupTransfer
-     */
     protected function addCustomerGroup(string $name): CustomerGroupTransfer
     {
         return (new CustomerGroupTransfer())->setName($name);
     }
 
-    /**
-     * @param \Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToDiscountFacadeInterface|null $discountFacadeMock
-     * @param \Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface|null $customerGroupFacadeMock
-     *
-     * @return \Spryker\Zed\CustomerGroupDiscountConnector\Business\DecisionRule\CustomerGroupDecisionRule
-     */
     protected function createCustomerGroupDecisionRule(
         ?CustomerGroupDiscountConnectorToDiscountFacadeInterface $discountFacadeMock = null,
         ?CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface $customerGroupFacadeMock = null
@@ -170,41 +147,26 @@ class CustomerGroupDecisionRuleTest extends Unit
         return $this->getMockBuilder(CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface::class)->getMock();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function createQuoteTransfer(): QuoteTransfer
     {
         return new QuoteTransfer();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ClauseTransfer
-     */
     protected function createClauseTransfer(): ClauseTransfer
     {
         return new ClauseTransfer();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     protected function createItemTransfer(): ItemTransfer
     {
         return new ItemTransfer();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     protected function createCustomerTransfer(): CustomerTransfer
     {
         return new CustomerTransfer();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerGroupTransfer
-     */
     protected function createCustomerGroupTransfer(): CustomerGroupTransfer
     {
         return new CustomerGroupTransfer();

@@ -25,10 +25,6 @@ class CustomerGroupDecisionRule implements CustomerGroupDecisionRuleInterface
      */
     protected $customerGroupFacade;
 
-    /**
-     * @param \Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToDiscountFacadeInterface $discountFacade
-     * @param \Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface $customerGroupFacade
-     */
     public function __construct(
         CustomerGroupDiscountConnectorToDiscountFacadeInterface $discountFacade,
         CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface $customerGroupFacade
