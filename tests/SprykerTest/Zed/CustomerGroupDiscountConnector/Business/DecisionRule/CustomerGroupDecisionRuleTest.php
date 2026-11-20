@@ -15,6 +15,7 @@ use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\CustomerGroupDiscountConnector\Business\DecisionRule\CustomerGroupDecisionRule;
+use Spryker\Zed\CustomerGroupDiscountConnector\CustomerGroupDiscountConnectorConfig;
 use Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface;
 use Spryker\Zed\CustomerGroupDiscountConnector\Dependency\Facade\CustomerGroupDiscountConnectorToDiscountFacadeInterface;
 
@@ -52,7 +53,10 @@ class CustomerGroupDecisionRuleTest extends Unit
 
     public function testIsSatisfiedWhenCustomerGroupIsNotSetShouldReturnFalse(): void
     {
-        $customerGroupDecisionRule = $this->createCustomerGroupDecisionRule();
+        $customerGroupFacadeMock = $this->createMock(CustomerGroupDiscountConnectorToCustomerGroupFacadeInterface::class);
+        $customerGroupFacadeMock->method('getCustomerGroupCollectionByCustomer')
+            ->willReturn(new CustomerGroupCollectionTransfer());
+        $customerGroupDecisionRule = $this->createCustomerGroupDecisionRule(null, $customerGroupFacadeMock);
 
         $quoteTransfer = $this->createQuoteTransfer();
 
@@ -77,7 +81,7 @@ class CustomerGroupDecisionRuleTest extends Unit
 
         $customerGroupCollectionTransfer = $this->createCustomerGroupCollectionTransfer();
         $customerGroupFacadeMock->expects($this->exactly(2))
-            ->method('getCustomerGroupCollectionByIdCustomer')
+            ->method('getCustomerGroupCollectionByCustomer')
             ->willReturn($customerGroupCollectionTransfer);
 
         $discountFacadeMock
@@ -128,7 +132,11 @@ class CustomerGroupDecisionRuleTest extends Unit
             $customerGroupFacadeMock = $this->createCustomerGroupFacadeMock();
         }
 
-        return new CustomerGroupDecisionRule($discountFacadeMock, $customerGroupFacadeMock);
+        return new CustomerGroupDecisionRule(
+            $discountFacadeMock,
+            $customerGroupFacadeMock,
+            new CustomerGroupDiscountConnectorConfig(),
+        );
     }
 
     /**

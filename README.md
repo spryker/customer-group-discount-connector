@@ -10,7 +10,7 @@ CustomerGroupDiscountConnector provides discount plugin. This allows to define d
 composer require spryker/customer-group-discount-connector
 ```
 
-To enable `CustomerGroupDecisionRulePlugin` add it to `DiscountDependencyProvider` should be placed inside `getDecisionRulePlugins` method.
+To enable the customer group decision rule, add `CustomerGroupSuggestDecisionRulePlugin` to `DiscountDependencyProvider::getDecisionRulePlugins()`. It replaces the deprecated `CustomerGroupDecisionRulePlugin`.
 
 Make sure you have latest changes for Yves side. There was issue when customer login, then `QuoteTransfer` may be missing `CustomerTransfer`.
 

@@ -8,6 +8,8 @@
 namespace Spryker\Zed\CustomerGroupDiscountConnector\Business;
 
 use Spryker\Zed\CustomerGroupDiscountConnector\Business\DecisionRule\CustomerGroupDecisionRule;
+use Spryker\Zed\CustomerGroupDiscountConnector\Business\Validator\CustomerGroupNameValidator;
+use Spryker\Zed\CustomerGroupDiscountConnector\Business\Validator\CustomerGroupNameValidatorInterface;
 use Spryker\Zed\CustomerGroupDiscountConnector\CustomerGroupDiscountConnectorDependencyProvider;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
@@ -24,7 +26,13 @@ class CustomerGroupDiscountConnectorBusinessFactory extends AbstractBusinessFact
         return new CustomerGroupDecisionRule(
             $this->getDiscountFacade(),
             $this->getCustomerGroupFacade(),
+            $this->getConfig(),
         );
+    }
+
+    public function createCustomerGroupNameValidator(): CustomerGroupNameValidatorInterface
+    {
+        return new CustomerGroupNameValidator($this->getCustomerGroupFacade());
     }
 
     /**
